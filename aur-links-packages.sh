@@ -11,7 +11,7 @@ do
   aur_link="${aur_one_link}${line}"
   aur_curl_count=$(curl -s $aur_link | grep -A2 '<div id="pkgfiles" class="listing">' | sed '3d' | sed '1d' | tr -d ' ' | sed 's/............//' | sed 's/.\{6\}$//')
   aur_sources_link_curl=$(curl -s $aur_link | grep -A50 '<div id="pkgfiles" class="listing">' | grep '<a href' | sed '/dcelasun/d' | tr -d ' ' | grep -Eo $aur_regex | tr -d '"')
-  aur_sources_link_curl_cgit=$(curl -s $aur_link | grep -A50 '<div id="pkgfiles" class="listing">' | grep '<a href' | sed '/dcelasun/d' | tr -d ' ' | grep -Eo 'http.*"' | tr -d '"')
+  aur_sources_link_curl_cgit=$(curl -s $aur_link | grep -A50 '<div id="pkgfiles" class="listing">' | grep '<a href' | sed '/dcelasun/d' | tr -d ' ' | grep -Eo $aur_regex_cgit | tr -d '"')
 #  aur_sources_link_curl=$(curl -s $aur_link | grep -A50 '<div id="pkgfiles" class="listing">' | grep '<a href' | sed '/dcelasun/d' | tr -d ' ' | grep -Eo $aur_regex_cgit | tr -d '"')
 #  aur_sources_link_curl=$(curl -s $aur_link | grep -A50 '<div id="pkgfiles" class="listing">' | grep '<a href' | sed '/dcelasun/d' | tr -d ' ' | grep -Eo 'http.*"' | tr -d '"')
   echo "Исходников в пакете ${aur_curl_count}"
